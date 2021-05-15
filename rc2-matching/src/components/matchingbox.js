@@ -1,19 +1,37 @@
 import React from 'react'
-import _ from 'lodash'
+// import _ from 'lodash'
 
-const MatchingBox = () => {
-    const card = []
-    const words = ["hello", "I", "wonder", "if", "this", "math", "formula", "will", "work"]
-    _.times(9, () => {
-        card.push(<div className="smallsquare">{words.[Math.floor(Math.random()*words.length)]}</div>)
-    })
-    console.log(card)
-    return (
-        <>
+const MatchingBox = (props) => {
+    // const card = []
+    // const newWord = []
+    const words = ["a", "apple", "b", "bapple", "c", "capple", "d", "dapple", "e", "eapple", "f", "fapple"]
+
+
+    //fischer-yates modern shuffle algorithm
+    let i = words.length
+        while (--i > 0) {
+            let j = Math.floor(Math.random()* words.length)
+            let temp = words[j]
+            words[j] = words[i]
+            words[i] = temp
+        }
+        
+        return (
+            <>
             <h1>Reporting Category 2</h1>
+            {/* <ul>
+                {words.map((word, index) => (
+                    <li key={index}>{word}</li>
+                ))}
+            </ul> */}
             <div className="main">
-                <div className="square">{card}</div>
-            </div>
+                <div className="square">
+                {words.map((word, index) => (
+                <div className="smallsquare" key={index}>{word}</div>
+                ))}
+                </div>
+            </div> 
+  
         </>
         
     )
